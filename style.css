@@ -1,0 +1,427 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0;
+  outline: 0;
+}
+
+body {
+  background: #000;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main_content {
+  display: grid;
+  place-items: center;
+  width: 70rem;
+  height: 50rem;
+  grid-template-rows: 90px 320px 160px 80px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+  grid-template-areas:
+    "player-1 restart player-2"
+    "player-1 dice player-2"
+    "player-1 buttons player-2"
+    "foot foot foot";
+  background: #eee;
+  padding: 60px 0 40px;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.1);
+}
+
+.player-one-box {
+  grid-area: player-1;
+  background: #fff;
+  border: 2px solid #fff;
+  width: 100%;
+  height: 100%;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0px 2px 4px -1px rgba(0, 0, 0, 0.06), 0px 10px 15px -3px rgba(0, 0, 0, 0.2),
+    0px 20px 25px -5px rgba(0, 0, 0, 0.25);
+  margin-left: 60px;
+  margin-bottom: 40px;
+}
+
+.player-one-box h2 {
+  color: #000;
+  font-size: 56px;
+  margin: 30px 0px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.p1p {
+  color: #000;
+  font-size: 90px;
+  font-family: "Courier New", Courier, monospace;
+  margin-bottom: 18px;
+}
+
+.mini-box-p1 {
+  border-top: 6px solid #000;
+  border-bottom: 6px solid #000;
+  display: inline-block;
+  padding: 20px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 25px;
+}
+
+.player-two-box {
+  grid-area: player-2;
+  background: #fff;
+  border: 2px solid #fff;
+  width: 100%;
+  height: 100%;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0px 2px 4px -1px rgba(0, 0, 0, 0.06), 0px 10px 15px -3px rgba(0, 0, 0, 0.2),
+    0px 20px 25px -5px rgba(0, 0, 0, 0.25);
+  margin-right: 60px;
+  margin-bottom: 40px;
+}
+
+.player-two-box h2 {
+  color: #000;
+  font-size: 56px;
+  margin: 30px 0px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.p2p {
+  color: #000;
+  font-size: 90px;
+  font-family: "Courier New", Courier, monospace;
+  margin-bottom: 18px;
+}
+
+.mini-box-p2 {
+  border-top: 6px solid #000;
+  border-bottom: 6px solid #000;
+  display: inline-block;
+  padding: 20px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 25px;
+}
+
+.dice_block {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: 1s ease;
+  grid-area: dice;
+}
+
+@keyframes rolling {
+  50% {
+    transform: rotateX(455deg) rotateY(455deg);
+  }
+}
+
+.dice_block__face {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border: 5px solid #f6f3f0;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #dddbd8, #fff);
+  transform-style: preserve-3d;
+}
+
+.dice_block__face::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 20px;
+  background: #f6f3f0;
+  transform: translateZ(-1px);
+}
+
+.dice_block__face::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  background: #000;
+  border-radius: 50%;
+}
+
+.dice_block__face--front {
+  transform: translateZ(50px);
+}
+
+.dice_block__face--back {
+  transform: rotateX(180deg) translateZ(50px);
+}
+
+.dice_block__face--top {
+  transform: rotateX(90deg) translateZ(50px);
+}
+
+.dice_block__face--bottom {
+  transform: rotateX(-90deg) translateZ(50px);
+}
+
+.dice_block__face--right {
+  transform: rotateY(90deg) translateZ(50px);
+}
+
+.dice_block__face--left {
+  transform: rotateY(-90deg) translateZ(50px);
+}
+
+.dice_block__face--front::after {
+  width: 30px;
+  height: 30px;
+  background: #000;
+  margin: -15px 0 0 -15px;
+}
+
+.dice_block__face--back::after {
+  margin: -35px 0 0 -30px;
+  box-shadow: 40px 0, 0 25px, 40px 25px, 0 50px, 40px 50px;
+}
+
+.dice_block__face--top::after {
+  margin: -30px 0 0 -30px;
+  box-shadow: 40px 40px;
+}
+
+.dice_block__face--bottom::after {
+  margin: -36px 0 0 -36px;
+  box-shadow: 26px 26px, 52px 52px, 52px 0, 0 52px;
+}
+
+.dice_block__face--right::after {
+  margin: -30px 0 0 -30px;
+  box-shadow: 40px 0, 0 40px, 40px 40px;
+}
+
+.dice_block__face--left::after {
+  margin: -35px 0 0 -35px;
+  box-shadow: 25px 25px, 50px 50px;
+}
+
+/* Normal State */
+.roll_your_dice {
+  background-color: black;
+  color: white;
+  margin-bottom: 71px;
+  margin-left: 0px;
+  padding: 6px 12px;
+  font-size: 30px;
+  font-weight: bold;
+  font-style: italic;
+  border: none;
+  border-radius: 12px;
+  grid-area: buttons;
+  width: 70%;
+  height: 50%;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.3),
+    0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 10px 15px -3px rgba(0, 0, 0, 0.2),
+    0px 20px 25px -5px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+/* Hover State */
+.roll_your_dice:hover {
+  background-color: #333;
+  box-shadow: 0px 2px 4px -1px rgba(255, 255, 255, 0.3),
+    0px 4px 6px -1px rgba(255, 255, 255, 0.2),
+    0px 8px 12px -3px rgba(255, 255, 255, 0.2),
+    0px 16px 20px -5px rgba(255, 255, 255, 0.25);
+}
+
+/* Active State */
+.roll_your_dice:active {
+  background-color: #222;
+  box-shadow: inset 0px 4px 8px -2px rgba(0, 0, 0, 0.5);
+}
+
+/* Focus State */
+.roll_your_dice:focus {
+  outline: none;
+  box-shadow: 0px 0px 0px 3px rgba(255, 255, 255, 0.5),
+    0px 4px 6px -1px rgba(0, 0, 0, 0.3), 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 10px 15px -3px rgba(0, 0, 0, 0.2),
+    0px 20px 25px -5px rgba(0, 0, 0, 0.25);
+}
+
+/* Normal State */
+.lock_your_value {
+  background: linear-gradient(
+    to bottom,
+    rgba(128, 0, 128, 0.8),
+    rgba(75, 0, 130, 0.8)
+  ); /* Purple */
+  /* background: linear-gradient(to bottom, rgba(0, 0, 255, 0.8), rgba(0, 0, 128, 0.8)); */ /* Blue */
+  color: white;
+  grid-area: buttons;
+  margin-top: 80px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px -1px rgba(128, 0, 128, 0.3),
+    0px 2px 4px -1px rgba(128, 0, 128, 0.2),
+    0px 10px 15px -3px rgba(128, 0, 128, 0.2),
+    0px 20px 25px -5px rgba(128, 0, 128, 0.25);
+  transition: all 0.3s ease;
+}
+
+/* Hover State */
+.lock_your_value:hover {
+  background: linear-gradient(
+    to bottom,
+    rgba(128, 0, 128, 1),
+    rgba(75, 0, 130, 1)
+  ); /* Purple */
+  /* background: linear-gradient(to bottom, rgba(0, 0, 255, 1), rgba(0, 0, 128, 1)); */ /* Blue */
+  box-shadow: 0px 2px 4px -1px rgba(255, 255, 255, 0.3),
+    0px 4px 6px -1px rgba(255, 255, 255, 0.2),
+    0px 8px 12px -3px rgba(255, 255, 255, 0.2),
+    0px 16px 20px -5px rgba(255, 255, 255, 0.25);
+}
+
+/* Active State */
+.lock_your_value:active {
+  background: rgba(75, 0, 130, 0.8); /* Purple */
+  /* background: rgba(0, 0, 128, 0.8); */ /* Blue */
+  box-shadow: inset 0px 4px 8px -2px rgba(128, 0, 128, 0.5);
+}
+
+/* Focus State */
+.lock_your_value:focus {
+  outline: none;
+  box-shadow: 0px 0px 0px 3px rgba(255, 255, 255, 0.5),
+    0px 4px 6px -1px rgba(128, 0, 128, 0.3),
+    0px 2px 4px -1px rgba(128, 0, 128, 0.2),
+    0px 10px 15px -3px rgba(128, 0, 128, 0.2),
+    0px 20px 25px -5px rgba(128, 0, 128, 0.25);
+}
+
+.player--active {
+  border: 4px solid green;
+  box-shadow: 0px 4px 6px -1px rgba(0, 128, 0, 0.3),
+    0px 2px 4px -1px rgba(0, 128, 0, 0.2),
+    0px 10px 15px -3px rgba(0, 128, 0, 0.2),
+    0px 20px 25px -5px rgba(0, 128, 0, 0.25);
+}
+
+.player--inactive {
+  border: 4px solid gray;
+  box-shadow: 0px 4px 6px -1px rgba(128, 128, 128, 0.3),
+    0px 2px 4px -1px rgba(128, 128, 128, 0.2),
+    0px 10px 15px -3px rgba(128, 128, 128, 0.2),
+    0px 20px 25px -5px rgba(128, 128, 128, 0.25);
+}
+
+@keyframes dimming {
+  0% {
+    background-color: #2f2f2f;
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.dim-in-out {
+  animation: dimming 20s infinite;
+}
+
+/* Normal State */
+.btn--new {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 255, 0.8),
+    rgba(0, 0, 128, 0.8)
+  ); /* Blue */
+  color: white;
+  grid-area: restart;
+  margin-bottom: 50px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px -1px rgba(0, 0, 255, 0.3),
+    0px 2px 4px -1px rgba(0, 0, 255, 0.2),
+    0px 10px 15px -3px rgba(0, 0, 255, 0.2),
+    0px 20px 25px -5px rgba(0, 0, 255, 0.25);
+  transition: all 0.3s ease;
+}
+
+/* Hover State */
+.btn--new:hover {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 255, 1),
+    rgba(0, 0, 128, 1)
+  ); /* Blue */
+  box-shadow: 0px 2px 4px -1px rgba(255, 255, 255, 0.3),
+    0px 4px 6px -1px rgba(255, 255, 255, 0.2),
+    0px 8px 12px -3px rgba(255, 255, 255, 0.2),
+    0px 16px 20px -5px rgba(255, 255, 255, 0.25);
+}
+
+/* Active State */
+.btn--new:active {
+  background: rgba(0, 0, 128, 0.8); /* Blue */
+  box-shadow: inset 0px 4px 8px -2px rgba(0, 0, 255, 0.5);
+}
+
+/* Focus State */
+.btn--new:focus {
+  outline: none;
+  box-shadow: 0px 0px 0px 3px rgba(255, 255, 255, 0.5),
+    0px 4px 6px -1px rgba(0, 0, 255, 0.3), 0px 2px 4px -1px rgba(0, 0, 255, 0.2),
+    0px 10px 15px -3px rgba(0, 0, 255, 0.2),
+    0px 20px 25px -5px rgba(0, 0, 255, 0.25);
+}
+
+.player--winner {
+  background-color: #00ff00;
+
+  /* WILL IMPLEMENT THIS IN VERSION 1.1 */
+
+  /* background-image: url(images/champ-cup.gif);
+  background-size: cover;
+  background-position: center; */
+
+  /* END PENDING IMPLEMENTATION OF VERSION 1.1 */
+}
+
+.player--winner .name {
+  font-weight: 700;
+  color: #fff;
+}
+
+.version-tag {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background-color: maroon;
+  color: white;
+  padding: 5px 10px;
+  font-size: 1.2em;
+  font-family: "Courier New", Courier, monospace;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  border-radius: 3px;
+}
