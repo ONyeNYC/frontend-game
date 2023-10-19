@@ -4,17 +4,55 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Frontend Game</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="main.js" defer></script>
   </head>
   <body>
-    <!--Create Dice-->
-    <div class="dice-block">
-      <div class="dice-block__face dice-block__face--front"></div>
-      <div class="dice-block__face dice-block__face--back"></div>
-      <div class="dice-block__face dice-block__face--top"></div>
-      <div class="dice-block__face dice-block__face--bottom"></div>
-      <div class="dice-block__face dice-block__face--right"></div>
-      <div class="dice-block__face dice-block__face--left"></div>
+    <!-- Version Tag -->
+    <div class="version-tag">
+      <p>Version 1.0</p>
     </div>
-    <!--End Dice Creation-->
+
+    <!-- Audio Elements -->
+    <audio id="diceSound" src="sounds/dice-roll.mp3"></audio>
+    <audio id="winSound" src="sounds/winner-sound.mp3"></audio>
+
+    <!-- Main Content -->
+    <div class="main_content">
+      <!-- Player 1 Section -->
+      <section class="player-one-box player gamer--0 player--active">
+        <h2 class="name" id="name--0">Player 1</h2>
+        <p class="points p1p" id="dice-player-value--0">43</p>
+        <div class="current mini-box-p1">
+          <p class="current-label">Current</p>
+          <p class="current-score" id="current--0">0</p>
+        </div>
+      </section>
+
+      <!-- Dice Block -->
+      <div class="dice_block dice">
+        <div class="dice_block__face dice_block__face--front"></div>
+        <div class="dice_block__face dice_block__face--back"></div>
+        <div class="dice_block__face dice_block__face--top"></div>
+        <div class="dice_block__face dice_block__face--bottom"></div>
+        <div class="dice_block__face dice_block__face--right"></div>
+        <div class="dice_block__face dice_block__face--left"></div>
+      </div>
+
+      <!-- Game Buttons -->
+      <button class="bttn roll_your_dice"><span>Roll Dice</span></button>
+      <button class="bttn lock_your_value">🔐 Lock In</button>
+      <button class="bttn btn--new">🕹️ New game</button>
+
+      <!-- Player 2 Section -->
+      <section class="player-two-box player gamer--1">
+        <h2 class="name" id="name--1">Player 2</h2>
+        <p class="points p2p" id="dice-player-value--1">24</p>
+        <div class="current mini-box-p2">
+          <p class="current-label">Current</p>
+          <p class="current-point" id="current--1">0</p>
+        </div>
+      </section>
+    </div>
   </body>
 </html>
